@@ -9,7 +9,7 @@ import history            from "../../history";
 import Firebase           from "firebase";
 import {DropdownButton, MenuItem} from "react-bootstrap";
 
-var categories = ["Clothing", "Food", "Entertainment", "Vehicle", "Home", "PersonalCare", "Medical", "Rent", "Utilities"];
+var categories = ["Clothing", "Food", "Entertainment", "Vehicle", "Home", "PersonalCare", "Medical", "Rent", "Utilities", "Refund", "Wages", "Investments", "Reimbursment", "Gift"];
 export default class AddTransactions extends BaseComponent{
 
   constructor(){
@@ -30,9 +30,16 @@ export default class AddTransactions extends BaseComponent{
     var is_income = this.refs.income.checked;
     var is_expense = this.refs.expense.checked;
     var description = this.refs.description.value;
-    var category = this.state.dropVal;
+    var category = this.state.dropVal == undefined? -1 : this.state.dropVal;
     var transactions = new Firebase("https://myutahguardian.firebaseio.com/transactions/"+this.state.user.uid);
     transactions.push({amount, is_income, is_expense, description, category});
+    this.refs.amount.value = ""
+    this.refs.income.checked = false;
+    this.refs.expense.checked = false;
+    this.refs.description.value = "";
+    this.setState({imageUrl: "", dropVal: undefined, message: "Saved!"});
+    this.refs.fileInput.value = "";
+    setTimeout(()=>{this.setState({message: ""})}, 3000);
   }
 
   setImage(e){
@@ -104,7 +111,9 @@ export default class AddTransactions extends BaseComponent{
               {this.state.imageUrl && <img src={this.state.imageUrl} width="200" height="200"/>}
             </div>
             <button onClick={(e)=>{this.addTransaction(e)}} className="btn btn-default">Submit</button>
+            <label>{this.state.message}</label>
           </form>
+
         </div>
       </div>
     );
