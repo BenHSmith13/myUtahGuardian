@@ -6,6 +6,7 @@ import ApplicationStore from '../../stores/application';
 import BaseComponent from  "../base_component";
 import UserStore     from "../../stores/user";
 import history       from "../../history";
+import RealtimeRedFlags from "./realtime_red_flags";
 import firebase      from "firebase";
 export default class RedFlags extends BaseComponent{
 
@@ -43,15 +44,7 @@ export default class RedFlags extends BaseComponent{
     // });
     return(
       <div className="container" style={styles.container}>
-        <div style={styles.paper}>
-          <h3>Flagged Transactions</h3>
-          <table className="table">
-            <thead><tr><th>#</th>{headerTags}</tr></thead>
-            <tbody>
-              {data}
-            </tbody>
-          </table>
-        </div>
+        <RealtimeRedFlags />
       </div>
     );
   }
