@@ -6,7 +6,7 @@ import StoreCommon    from "./store_common";
 import QueryString    from '../utils/query_string';
 
 var _loggedIn    = false;
-var _authData    = {};
+var _userData    = {};
 // Extend Message Store with EventEmitter to add eventing capabilities
 var User = {...StoreCommon, ...{
 
@@ -15,7 +15,7 @@ var User = {...StoreCommon, ...{
     return _loggedIn;
   },
   userData(){
-    return _authData;
+    return _userData;
   }
 
 }};
@@ -27,11 +27,11 @@ Dispatcher.register(function(payload) {
 
     case Constants.LOGIN:
       _loggedIn = true;
-      _authData = payload.data;
+      _userData = payload.data;
       break;
     case Constants.LOGOUT: 
       _loggedIn = false;
-      _authData = {};
+      _userData = {};
       break;
 
     default:

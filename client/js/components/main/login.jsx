@@ -34,7 +34,7 @@ export default class Login extends BaseComponent{
   }
   login(e){
     e.preventDefault();
-    var ref = new Firebase("https://conservators.firebaseio.com");
+    var ref = new Firebase("https://myutahguardian.firebaseio.com");
     ref.authWithPassword({
       email    : this.refs.email.value,
       password : this.refs.password.value
@@ -54,8 +54,15 @@ export default class Login extends BaseComponent{
             console.log("Error logging user in:", error);
         }
       } else {
-        UserActions.login(authData);
-        history.pushState(null,"/red_flags");
+        var userRef = new Firebase("https://myutahguardian.firebaseio.com/users/"+authData.uid)
+        userRef.on("value", (data)=>{
+          UserActions.login(data.val());
+          if(data.val().role == "admin")
+            history.pushState(null,"/red_flags");
+          else
+            history.pushState(null,"/add_transactions");
+        });
+
         console.log("Authenticated successfully with payload:", authData);
       }
     });

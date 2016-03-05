@@ -28,6 +28,6 @@ export default class Navbar extends React.Component{
   }
   render(){
     var styles = this.getStyles();
-    return <div style={styles.navbar}><i onClick={()=>{this.props.loggedIn && ApplicationActions.toggleSideBar()}}className="glyphicon glyphicon-menu-hamburger" style={styles.icon}></i>Utah Conservators</div>;
+    return <div style={styles.navbar}><i onClick={()=>{this.props.loggedIn && ApplicationActions.toggleSideBar()}}className="glyphicon glyphicon-menu-hamburger" style={styles.icon}></i>My Utah Guardian<span style={{float:"right"}}>{this.props.username}</span></div>;
   }
 };

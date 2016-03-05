@@ -4,6 +4,26 @@ import React from 'react';
 import MenuItem from './menu_item';
 
 export default class Sidebar extends React.Component{
+  getItems(){
+    if(this.props.role == "admin"){
+      return (
+        <div>
+          <MenuItem route="/red_flags">Red Flags</MenuItem>
+          <MenuItem route="/graphs">Data Graphs</MenuItem>
+          <MenuItem route="/upload">Upload Your Data</MenuItem>
+          <MenuItem route="/">Logout</MenuItem>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <MenuItem route="/add_transactions">Add Transactions</MenuItem>
+          <MenuItem route="/transactions">Recent Transactions</MenuItem>
+          <MenuItem route="/">Logout</MenuItem>
+        </div>
+      );
+    }
+  }
   getStyles(){
     return {
       sidebar: {
@@ -28,14 +48,13 @@ export default class Sidebar extends React.Component{
     }
   }
   render(){
+
     var styles = this.getStyles();
+    var items = this.getItems();
     return(
       <div style={styles.sidebar}>
         <MenuItem style={styles.header}>Menu</MenuItem>
-        <MenuItem route="/red_flags">Red Flags</MenuItem>
-        <MenuItem route="/graphs">Data Graphs</MenuItem>
-        <MenuItem route="/upload">Upload Your Data</MenuItem>
-        <MenuItem route="/">Logout</MenuItem>
+        {items}
       </div>
     );
   }

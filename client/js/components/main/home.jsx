@@ -19,7 +19,8 @@ export default class Home extends BaseComponent{
   getState(){
     return {
       sideBarOpen: ApplicationStore.sideBarOpen(),
-      loggedIn: UserStore.loggedIn()
+      loggedIn: UserStore.loggedIn(),
+      userData: UserStore.userData()
     }
   }
   
@@ -30,7 +31,7 @@ export default class Home extends BaseComponent{
     });
     return(
     <div className="container">
-      <Navbar loggedIn={this.state.loggedIn} sideBarOpen={this.state.sideBarOpen}/>
+      <Navbar username = {this.state.userData.username} loggedIn={this.state.loggedIn} sideBarOpen={this.state.sideBarOpen}/>
       <Sidebar sideBarOpen={this.state.sideBarOpen}/>
       {this.props.children}
     </div>);
