@@ -56,7 +56,7 @@ export default class Login extends BaseComponent{
       } else {
         var userRef = new Firebase("https://myutahguardian.firebaseio.com/users/"+authData.uid)
         userRef.on("value", (data)=>{
-          UserActions.login(data.val());
+          UserActions.login({...data.val(), uid: data.key()});
           if(data.val().role == "admin")
             history.pushState(null,"/red_flags");
           else

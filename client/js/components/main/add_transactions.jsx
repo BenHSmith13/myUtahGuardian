@@ -1,52 +1,60 @@
 "use strict";
 
-import React         from 'react';
-import SettingsStore from '../../stores/settings';
-import ApplicationStore from '../../stores/application';
-import BaseComponent from  "../base_component";
-import UserStore     from "../../stores/user";
-import history       from "../../history";
+import React              from 'react';
+import SettingsStore      from '../../stores/settings';
+import ApplicationStore   from '../../stores/application';
+import BaseComponent      from  "../base_component";
+import UserStore          from "../../stores/user";
+import history            from "../../history";
+import Firebase           from "firebase";
 import {DropdownButton, MenuItem} from "react-bootstrap";
+
+var categories = ["Clothing", "Food", "Entertainment", "Vehicle", "Home", "PersonalCare", "Medical", "Rent", "Utilities"];
 export default class AddTransactions extends BaseComponent{
 
   constructor(){
     super();
+    this.stores = [UserStore];
     this.state = this.getState();
   }
 
   getState(){
-    return {}
+    return {
+      user: UserStore.userData()
+    };
   }
 
   addTransaction(e){
     e.preventDefault();
     var amount = this.refs.amount.value;
-    var income = this.refs.income.checked;
-    var expense = this.refs.income.checked;
+    var is_income = this.refs.income.checked;
+    var is_expense = this.refs.expense.checked;
     var description = this.refs.description.value;
+    var category = this.state.dropVal;
+    var transactions = new Firebase("https://myutahguardian.firebaseio.com/transactions/"+this.state.user.uid);
+    transactions.push({amount, is_income, is_expense, description, category});
   }
+
   setImage(e){
-    debugger
-    if(this.refs.fileInput.files.length) return;
+    if(!this.refs.fileInput.files[0]) return;
     var reader = new FileReader();
     reader.onload = (e)=>{
               this.setState({imageUrl: e.target.result});
             };
 
-    reader.readAsDataURL(input.files[0]);
+    reader.readAsDataURL(this.refs.fileInput.files[0]);
   }
-
+  dropdownChanged(e, val){
+    this.setState({dropVal: val})
+  }
   getDropdown(){
-    return <DropdownButton ref="category" title="Expense Categories">
-      <MenuItem eventKey="1">Clothing</MenuItem>
-      <MenuItem eventKey="2">Food</MenuItem>
-      <MenuItem eventKey="3">Entertainment</MenuItem>
-      <MenuItem eventKey="4">Vehicle</MenuItem>
-      <MenuItem eventKey="5">Home</MenuItem>
-      <MenuItem eventKey="5">Personal Care</MenuItem>
-      <MenuItem eventKey="5">Medical</MenuItem>
-      <MenuItem eventKey="5">Rent</MenuItem>
-      <MenuItem eventKey="5">Utilities</MenuItem>
+    
+    var menuItems = _.map(categories, (cat, i)=>{
+
+          return <MenuItem active={this.state.dropVal == i} key={cat} eventKey={i} onSelect={(key, val)=>{this.dropdownChanged(key, val)}}>{cat}</MenuItem>
+        });
+    return <DropdownButton ref="category" title={this.state.dropVal != undefined ? categories[this.state.dropVal] : "Expense Categories"}>
+      {menuItems}
     </DropdownButton>
   }
   getStyles(){
@@ -92,8 +100,10 @@ export default class AddTransactions extends BaseComponent{
             </div>
             <label>Upload Receipt Image</label>
             <input ref="fileInput" type='file' onChange={(e)=>this.setImage(e)} />
-            {this.state.imageUrl && <img src={this.state.imageUrl} width="200" height="200"/>}
-            <button onClick={(e)=>{this.login(e)}} className="btn btn-default">Submit</button>
+            <div>
+              {this.state.imageUrl && <img src={this.state.imageUrl} width="200" height="200"/>}
+            </div>
+            <button onClick={(e)=>{this.addTransaction(e)}} className="btn btn-default">Submit</button>
           </form>
         </div>
       </div>
