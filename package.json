@@ -26,6 +26,7 @@
   "license": "MIT",
   "homepage": "https://github.com/atomicjolt/react_client_starter_app",
   "dependencies": {
-    "firebase": "^2.4.1"
+    "firebase": "^2.4.1",
+    "natural": "^0.2.1"
   }
 }
