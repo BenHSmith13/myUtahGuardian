@@ -23,9 +23,9 @@ export default class MenuItem extends React.Component{
   }
   transition(){
     if(this.props.route){
+      ApplicationActions.toggleSideBar();
       if(this.props.route == "/"){ 
-        UserActions.logout();
-        ApplicationActions.toggleSideBar();
+        UserActions.logout();  
       }
       history.pushState(null,this.props.route);
     }

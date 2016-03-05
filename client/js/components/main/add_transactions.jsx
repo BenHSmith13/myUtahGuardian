@@ -20,6 +20,13 @@ export default class AddTransactions extends BaseComponent{
     return {
       container: {
         marginTop: "70px"  
+      },
+      transactionForm: {
+        margin: "auto",
+        width: "80%",
+        padding: "20px",
+        boxShaddow: "0px 1px 1px 0px",
+        borderRadius: "3px"
       }
     }
   }
@@ -27,7 +34,9 @@ export default class AddTransactions extends BaseComponent{
     var styles = this.getStyles();
     return(
       <div className="container" style={styles.container}>
-        <h1>Add Transactions</h1>
+        <div style={styles.transactionForm}>
+
+        </div>
       </div>
     );
   }

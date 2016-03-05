@@ -32,7 +32,7 @@ export default class Home extends BaseComponent{
     return(
     <div className="container">
       <Navbar username = {this.state.userData.username} loggedIn={this.state.loggedIn} sideBarOpen={this.state.sideBarOpen}/>
-      <Sidebar sideBarOpen={this.state.sideBarOpen}/>
+      <Sidebar role={this.state.userData.role} sideBarOpen={this.state.sideBarOpen}/>
       {this.props.children}
     </div>);
   }
