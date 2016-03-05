@@ -7,6 +7,7 @@ import BaseComponent      from  "../base_component";
 import UserStore          from "../../stores/user";
 import history            from "../../history";
 import Firebase           from "firebase";
+import Processor          from "./processing";
 import {DropdownButton, MenuItem} from "react-bootstrap";
 
 var categories = ["Clothing", "Food", "Entertainment", "Vehicle", "Home", "PersonalCare", "Medical", "Rent", "Utilities", "Refund", "Wages", "Investments", "Reimbursment", "Gift"];
@@ -33,6 +34,7 @@ export default class AddTransactions extends BaseComponent{
     var category = this.state.dropVal == undefined? -1 : this.state.dropVal;
     var transactions = new Firebase("https://myutahguardian.firebaseio.com/transactions/"+this.state.user.uid);
     transactions.push({amount, is_income, is_expense, description, category});
+    Processor.processTransaction({amount, is_income, is_expense, description, category}, this.state.user.uid);
     this.refs.amount.value = ""
     this.refs.income.checked = false;
     this.refs.expense.checked = false;
