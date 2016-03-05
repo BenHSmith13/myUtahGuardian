@@ -1,12 +1,13 @@
 var sql = require('mssql');
-var firebase = require('firebase');
-//var parseData = require('./parse_data.js');
+var parseData = require('./parse_data.js');
+
+console.log("I Print");
 
 var config = {
   user: 'reader',
   password: 'password',
-  server: 'courthack1.chlkkmlosb1x.us-east-1.rds.amazonaws.com', // You can use 'localhost\\instance' to connect to named instance
-  database: 'ConservatorDatabase',
+  server: 'conservatordb.c2d9u4iyrnxx.us-east-1.rds.amazonaws.com', // You can use 'localhost\\instance' to connect to named instance
+  database: 'conservatordb',
 
   //options: {
   //  encrypt: true // Use this if you're on Windows Azure
@@ -15,10 +16,10 @@ var config = {
 
 sql.connect(config).then(function() {
   // Query
-
+console.log('connected');
   new sql.Request().query('select top 100 * from IncomeExpenseTransactions').then(function(recordset) {
     console.log(recordset);
-
+    parseData.parser(recordset);
   }).catch(function(err) {
     // ... query error checks
     console.log('ERROR: ', err);
@@ -38,4 +39,5 @@ sql.connect(config).then(function() {
   });
 }).catch(function(err) {
   // ... connect error checks
+  console.log("Err2", err);
 });
