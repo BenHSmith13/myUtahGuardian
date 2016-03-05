@@ -13,13 +13,16 @@ export default class RedFlags extends BaseComponent{
 
   constructor(){
     super();
-    this.state = this.getState();
+    this.state = {visible: false}
   }
 
   getState(){
     return {
 
     }
+  }
+  toggleVisibility(){
+    this.setState({visible: !this.state.visible})
   }
   componentDidMount(){
     var redFlagFB = new Firebase("https://myutahguardian.firebaseio.com/red_flags");
@@ -35,16 +38,24 @@ export default class RedFlags extends BaseComponent{
       },
       paper: {
         margin: "auto",
-        width: "100%",
-        padding: "20px",
-        boxShadow: "0px 1px 1px 0px",
-        borderRadius: "3px"
+        width: this.state.visible ? "100%" : "0%",
+        height: this.state.visible ? "300px": "0px",
+        padding: this.state.visible ? "20px" : "",
+        boxShadow: this.state.visible ? "0px 1px 1px 0px" : "",
+        borderRadius: "3px",
+        overflow: "hidden",
+        transition: "all .8s ease"
       },
       level(level){
         if(level == 1) return {color: "rgb(81,163,74)"}
         if(level == 2) return {color: "rgb(50,104,197)"}
         if(level == 3) return {color: "rgb(217,227,63)"}
         if(level == 4) return {color: "rgb(210,28,28)"}
+      },
+      expander: {
+        position: "absolute",
+        top: "0px",
+        right: "0px"
       }
     }
   }
@@ -75,6 +86,9 @@ export default class RedFlags extends BaseComponent{
     });
     return(
       <div className="container" style={styles.container}>
+        <div style={styles.expander}>
+          <button onClick={()=>{this.toggleVisibility()}}className="btn btn-success">Alerts <i className="glyphicon glyphicon-exclamation-sign">{sortedData.length}</i></button>
+        </div>
         <div style={styles.paper}>
           <h3>Flagged Transactions</h3>
           <table className="table">
