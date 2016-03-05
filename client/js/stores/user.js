@@ -29,6 +29,10 @@ Dispatcher.register(function(payload) {
       _loggedIn = true;
       _authData = payload.data;
       break;
+    case Constants.LOGOUT: 
+      _loggedIn = false;
+      _authData = {};
+      break;
 
     default:
       return true;

@@ -2,6 +2,8 @@
 
 import React from 'react';
 import history from "../../history";
+import UserActions from "../../actions/user";
+import ApplicationActions from "../../actions/application";
 export default class MenuItem extends React.Component{
   constructor(){
     super()
@@ -21,6 +23,10 @@ export default class MenuItem extends React.Component{
   }
   transition(){
     if(this.props.route){
+      if(this.props.route == "/"){ 
+        UserActions.logout();
+        ApplicationActions.toggleSideBar();
+      }
       history.pushState(null,this.props.route);
     }
   }
