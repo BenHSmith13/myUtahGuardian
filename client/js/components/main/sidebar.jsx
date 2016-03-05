@@ -16,7 +16,7 @@ export default class Sidebar extends React.Component{
         backgroundColor: "rgb(40,50,63)",
         zIndex: 1000,
         transition: "all .5s ease",
-        boxShadow: "2px 2px 2px 2px rgb(40,50,63)"
+        boxShadow: "0px 2px 2px 0px rgb(40,50,63)"
       },
       header: {
         padding: "22px",
@@ -32,9 +32,9 @@ export default class Sidebar extends React.Component{
     return(
       <div style={styles.sidebar}>
         <MenuItem style={styles.header}>Menu</MenuItem>
-        <MenuItem>Red Flags</MenuItem>
-        <MenuItem>Data Graphs</MenuItem>
-        <MenuItem>Action</MenuItem>
+        <MenuItem route="/">Red Flags</MenuItem>
+        <MenuItem route="/graphs">Data Graphs</MenuItem>
+        <MenuItem route="/upload">Upload Your Data</MenuItem>
       </div>
     );
   }

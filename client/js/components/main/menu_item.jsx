@@ -1,7 +1,7 @@
 "use strict";
 
 import React from 'react';
-
+import history from "../../history";
 export default class MenuItem extends React.Component{
   constructor(){
     super()
@@ -19,12 +19,17 @@ export default class MenuItem extends React.Component{
       }
     }
   }
-
+  transition(){
+    if(this.props.route){
+      history.pushState(null,this.props.route);
+    }
+  }
   render(){
     var styles = this.getStyles();
     return <div 
       onMouseOver={()=>{this.setState({hovered: true})}} 
       onMouseLeave={()=>{this.setState({hovered: false})}}
+      onClick={()=>{this.transition()}}
       style={{...styles.item, ...this.props.style}}>
         {this.props.children}
       </div>;

@@ -16,7 +16,7 @@ export default class Navbar extends React.Component{
         color: "white",
         fontSize: "1.2em",
         zIndex: 10,
-        boxShadow: "2px 2px 2px 2px rgb(29,35,43)"
+        boxShadow: "0px 2px 2px 0px rgb(29,35,43)"
 
       },
       icon: {
@@ -28,6 +28,6 @@ export default class Navbar extends React.Component{
   }
   render(){
     var styles = this.getStyles();
-    return <div style={styles.navbar}><i onClick={()=>{ApplicationActions.toggleSideBar()}}className="glyphicon glyphicon-menu-hamburger" style={styles.icon}></i>Utah Conservators</div>;
+    return <div style={styles.navbar}><i onClick={()=>{this.props.loggedIn && ApplicationActions.toggleSideBar()}}className="glyphicon glyphicon-menu-hamburger" style={styles.icon}></i>Utah Conservators</div>;
   }
 };

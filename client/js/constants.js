@@ -6,7 +6,7 @@ export default {
   REFRESH_JWT: "refresh_jwt",
   SETTINGS_LOAD: "settings_load",
   TOGGLE_SIDE_BAR: "open_up_dat_side_bah",
-
+  LOGIN:  "login",
   // Errors
   TIMEOUT: "timeout",
   ERROR: "error",

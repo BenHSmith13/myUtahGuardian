@@ -4,11 +4,18 @@ import React                  from 'react';
 import { Route, IndexRoute }  from 'react-router';
 import Index                  from './components/index';
 import Home                   from './components/main/home';
+import Login                  from './components/main/login';
+import RedFlags               from './components/main/red_flags';
+import Graphs                 from './components/main/graphs';
+import Upload                 from './components/main/upload';
 import NotFound               from './components/not_found';
 
 export default (
-  <Route path="/" component={Index}>
-    <IndexRoute component={Home}/>
+  <Route path="/" component={Home}>
+    <IndexRoute component={Login} />
+    <Route path="/red_flags" component={RedFlags}/>
+    <Route path="/graphs" component={Graphs} />
+    <Route path="/upload" component={Upload} />
     <Route path="*" component={NotFound}/>
   </Route>
 );
