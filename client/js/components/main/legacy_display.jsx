@@ -130,7 +130,7 @@ export default class LegacyDisplay extends BaseComponent{
     var styles = this.getStyles();
 
     return(
-      <div >
+      <div style={{marginTop: '10px'}} >
         {this.data()}
       </div>
     );
