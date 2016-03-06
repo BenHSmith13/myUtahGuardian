@@ -43,9 +43,6 @@ export default class Transactions extends BaseComponent{
   }
 
   render(){
-    var data = _.map(this.state.transactions, (val, key)=>{
-
-    });
     var headers = ["Amount", "Is Income?", "Is Expense?", "Category", "Description"];
     var headerTags = _.map(headers, (header)=>{
       return (

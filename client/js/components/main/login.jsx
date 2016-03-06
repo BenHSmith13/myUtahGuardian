@@ -73,7 +73,7 @@ export default class Login extends BaseComponent{
       <div className="container">
         <div className="jumbotron" style={{textAlign: "center"}}>
           <h1>Welcome to My Utah Guardian</h1>
-          <p>Upload your audit data and have it analyzed quickly and efficiently.</p>
+          <p>Real-time, data-driven, fraud detection.</p>
         </div>
         <div style={styles.loginForm}>
           <h4>Login</h4>

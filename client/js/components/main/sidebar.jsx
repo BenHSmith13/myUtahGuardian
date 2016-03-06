@@ -9,8 +9,7 @@ export default class Sidebar extends React.Component{
       return (
         <div>
           <MenuItem route="/red_flags">Red Flags</MenuItem>
-          <MenuItem route="/graphs">Data Graphs</MenuItem>
-          <MenuItem route="/upload">Upload Your Data</MenuItem>
+          <MenuItem route="/upload">Uploaded Data</MenuItem>
           <MenuItem route="/">Logout</MenuItem>
         </div>
       );
