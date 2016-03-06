@@ -1,4 +1,4 @@
-[{"CaseFileReportId":17477,"Description":"Pat Readmond","Amount":53,"TransactionCategoryId":196,"field5":"","flag":1},
+export default `[{"CaseFileReportId":17477,"Description":"Pat Readmond","Amount":53,"TransactionCategoryId":196,"field5":"","flag":1},
 {"CaseFileReportId":17477,"Description":"Asurion Wireless","Amount":169,"TransactionCategoryId":233,"field5":"","flag":1},
 {"CaseFileReportId":16732,"Description":"ANN CONRAD TAX REFUNDS","Amount":697,"TransactionCategoryId":214,"field5":"","flag":1},
 {"CaseFileReportId":16693,"Description":"Walmart groceries","Amount":573.11,"TransactionCategoryId":197,"field5":"","flag":4},
@@ -3617,4 +3617,4 @@
 {"CaseFileReportId":16267,"Description":"Jay Meacham","Amount":900,"TransactionCategoryId":182,"field5":"","flag":2},
 {"CaseFileReportId":16267,"Description":"Jay Meacham","Amount":1000,"TransactionCategoryId":182,"field5":"","flag":2},
 {"CaseFileReportId":16267,"Description":"Transfer to Jay Meacham","Amount":427.5,"TransactionCategoryId":189,"field5":"","flag":2},
-{"CaseFileReportId":16267,"Description":"Transfer to Jay Meacham","Amount":566.56,"TransactionCategoryId":203,"field5":"","flag":1}]
+{"CaseFileReportId":16267,"Description":"Transfer to Jay Meacham","Amount":566.56,"TransactionCategoryId":203,"field5":"","flag":1}]`

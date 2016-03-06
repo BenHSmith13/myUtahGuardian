@@ -410,7 +410,7 @@ _.each(data, function(item){
 
 function write(item){
   var fs = require('fs');
-  fs.appendFile('./processed_data.json', JSON.stringify(item) + ',\n', function (err) {
+  fs.appendFile('./processed_data.jsx', JSON.stringify(item) + ',\n', function (err) {
     console.log(err)
   });
 }

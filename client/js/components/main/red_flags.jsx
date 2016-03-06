@@ -6,6 +6,8 @@ import ApplicationStore from '../../stores/application';
 import BaseComponent from  "../base_component";
 import UserStore     from "../../stores/user";
 import history       from "../../history";
+import LegacyDisplay from "./legacy_display";
+
 export default class RedFlags extends BaseComponent{
 
   constructor(){
@@ -26,7 +28,8 @@ export default class RedFlags extends BaseComponent{
     var styles = this.getStyles();
     return(
       <div className="container" style={styles.container}>
-        <h1>RED FLAGS</h1>
+        <h1>Auditor Dashboard</h1>
+        <LegacyDisplay />
       </div>
     );
   }
