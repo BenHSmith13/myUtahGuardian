@@ -30,6 +30,10 @@ export default class RedFlags extends BaseComponent{
       this.setState({redFlags: snapshot.val()});
     });
   }
+  removeGuy(e, key){
+    var fredRef = new Firebase('https://myutahguardian.firebaseio.com/red_flags/'+key);
+    fredRef.remove(); 
+  }
   getStyles(){
     return {
       container: {
@@ -69,7 +73,7 @@ export default class RedFlags extends BaseComponent{
     });
     var i = 1;
     var sortedData = _.sortBy(this.state.redFlags, (flag)=>(flag.level)).reverse();
-    var data = _.map(sortedData, (data, key)=>{
+    var data = _.map(this.state.redFlags, (data, key)=>{
       return (
         <tr key={key}>
           <td>{i++}</td>
@@ -80,7 +84,7 @@ export default class RedFlags extends BaseComponent{
           <td>{data.is_expense ? "true" : "false"}</td>
           <td>{catagories[data.category]}</td>
           <td>{data.description}</td>
-          <td><button className="btn btn-success">Clear</button></td>
+          <td><button onClick={(e)=>{this.removeGuy(e, key)}}className="btn btn-success">Clear</button></td>
         </tr>
       );
     });
